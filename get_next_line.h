@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:41:33 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/21 10:56:19 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:16:39 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
 
 int		ft_strlen(char *str);
+int		ft_nsch(char *str, char c);
 
 #endif
