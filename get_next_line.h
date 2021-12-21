@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:41:33 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/21 16:16:39 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/21 19:40:39 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 
 int		ft_strlen(char *str);
-int		ft_nsch(char *str, char c);
+int		ft_search(char *str);
+
+void	ft_get_buffer(char *buffer);
 
 #endif

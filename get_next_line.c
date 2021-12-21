@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:42:22 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/21 18:14:08 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/21 19:41:37 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void	ft_get_buffer(char *buffer)
 	}
 	while (buffer[j])
 		buffer[i++] = buffer[j++];
-	}
 	buffer[i] = 0;
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1]
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
 	char		*temp;
 	int			end;
 
 	if (read(fd, buffer, BUFFER_SIZE) == -1)
 		return (0);
+	line = 0;
 	if (buffer[0])
 		line = ft_strjoin(line, buffer);
 	while (ft_search(buffer) == 0)
@@ -47,8 +47,13 @@ char	*get_next_line(int fd)
 		if (end == 0)
 		{
 			ft_get_buffer(buffer);
-			return (line)
+			return (line);
 		}
+		buffer[end] = 0;
+		temp = line;
+		line = ft_strjoin(line, buffer);
+		free (temp);
 	}
+	ft_get_buffer(buffer);
 	return (line);
 }

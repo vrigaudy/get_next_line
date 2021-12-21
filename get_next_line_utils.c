@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:42:02 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/21 17:51:30 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/21 19:42:17 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_search(char *str, char c)
+int	ft_search(char *str)
 {
 	int	i;
 
-	i = 0
+	i = 0;
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (str[i] == '\n')
 			return (i + 1);
 		i++;
 	}
@@ -42,6 +42,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
+	i = 0;
+	j = 0;
 	if (!s1 || !s2)
 		return (0);
 	if (ft_search(s2) == 0)
