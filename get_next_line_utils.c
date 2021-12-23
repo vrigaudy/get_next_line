@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:42:02 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/23 17:38:15 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/24 00:37:01 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,55 +26,47 @@ int	ft_strlen(char *str)
 
 int	ft_strchr(char *str)
 {
-	int	i;
-
-	i = 0;
 	if (!str)
-		return (-1);
-	while (str[i])
+		return (0);
+	while (*str)
 	{
-		if (str[i] == '\n')
-			return (i + 1);
-		i++;
+		if (*str == '\n')
+			return (1);
+		str++;
 	}
 	return (0);
 }
 
-void	ft_strcpy(char *src, char *dst)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
+{
+	char	*d;
+	char	*s;
 
-	i = 0;
-	if (src)
+	d = (char *)dst;
+	s = (char *)src;
+	if (d > s)
 	{
-		while (src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
+		while (len--)
+			*(d + len) = *(s + len);
 	}
-	dst[i] = 0;
+	while (len--)
+		*(d++) = *(s++);
+	return (dst);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*ret;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
+	if (s1 && s2)
+		return (0);
 	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!ret)
 		return (0);
-	if (s1)
-	{
-		ft_strcpy(s1, ret);
-		if (s2)
- 			ft_strcpy(s2, &ret[ft_strlen(s1)]);
-	}
-	else if (s2)
-		ft_strcpy(s2, ret);
+	ft_memmove(ret, s1, ft_strlen(s1));
+	ft_memmove(ret + ft_strlen(s1), s2, ft_strlen(s2));
+	free(s1);
 	return (ret);
 }
 

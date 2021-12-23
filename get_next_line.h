@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:41:33 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/23 17:31:20 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/24 00:37:09 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
 
-void	ft_strcpy(char *src, char *dst);
+void	*ft_memmove(void *dst, const void *src, size_t len)
 
 #endif
