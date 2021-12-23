@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:41:33 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/21 19:40:39 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/23 00:38:12 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 char	*get_next_line(int fd);
+char	*ft_save_update(char *save);
+char	*ft_line_from_save(char *save);
 char	*ft_strjoin(char *s1, char *s2);
 
 int		ft_strlen(char *str);
-int		ft_search(char *str);
+int		ft_strchr(char *str);
 
-void	ft_get_buffer(char *buffer);
+void	ft_strcpy(char *src, char *dst);
 
 #endif

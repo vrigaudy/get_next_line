@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:42:02 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/21 19:42:17 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/23 00:49:08 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_search(char *str)
+int	ft_strchr(char *str)
 {
 	int	i;
 
@@ -36,31 +36,36 @@ int	ft_search(char *str)
 	return (0);
 }
 
+void	ft_strcpy(char *src, char *dst)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = 0;
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*dst;
+	char	*ret;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	printf("OK test\n");
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ret)
 		return (0);
-	if (ft_search(s2) == 0)
-		dst = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	else
-		dst = malloc(sizeof(char) * (ft_strlen(s1) + ft_search(s2) + 1));
-	if (!dst)
-		return (0);
-	while (s1[i])
-	{
-		dst[i] = s1[i];
-		i++;
-	}
-	while (s2[j] && s2[j] != '\n')
-		dst[i++] = s2[j++];
-	if (s2[j] == '\n')
-		dst[i++] = '\n';
-	dst[i] = 0;
-	return (dst);
+	printf("OK 1\n");
+	ft_strcpy(s1, ret);
+	printf("OK 2\n");
+	ft_strcpy(s2, &ret[ft_strlen(s1)]);
+	printf("OK 3\n");
+	return (ret);
 }
+
