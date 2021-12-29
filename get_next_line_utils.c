@@ -6,7 +6,7 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:42:02 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/24 00:37:01 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:27:08 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,47 +26,44 @@ int	ft_strlen(char *str)
 
 int	ft_strchr(char *str)
 {
+	int	i;
+
+	i = 0;
 	if (!str)
 		return (0);
-	while (*str)
+	while (str[i])
 	{
-		if (*str == '\n')
-			return (1);
-		str++;
+		if (str[i] == '\n')
+			return (i + 1);
+		i++;
 	}
 	return (0);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-{
-	char	*d;
-	char	*s;
-
-	d = (char *)dst;
-	s = (char *)src;
-	if (d > s)
-	{
-		while (len--)
-			*(d + len) = *(s + len);
-	}
-	while (len--)
-		*(d++) = *(s++);
-	return (dst);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;
+	int		i;
 
-	if (s1 && s2)
+	i = 0;
+	if (!s2)
 		return (0);
-	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (ft_strchr(buffer) > 0)
+		ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strchr(s2) + 1));
+	else
+		ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!ret)
 		return (0);
-	ft_memmove(ret, s1, ft_strlen(s1));
-	ft_memmove(ret + ft_strlen(s1), s2, ft_strlen(s2));
+	while (s1[i])
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	while (*s2 && *s2 != '\n')
+		ret[i++] = *(s2++);
+	if (*s2 == '\n')
+		ret[i++] = *s2;
+	ret[i] = 0;
 	free(s1);
 	return (ret);
 }
-

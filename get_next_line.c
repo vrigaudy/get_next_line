@@ -6,64 +6,47 @@
 /*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:42:22 by vrigaudy          #+#    #+#             */
-/*   Updated: 2021/12/24 00:37:04 by vrigaudy         ###   ########.fr       */
+/*   Updated: 2021/12/29 21:25:17 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_save_update(char *save)
+void	ft_buffer_update(char *buffer)
 {
-	char	*temp;
-
-	temp = malloc(sizeof(char) * (ft_strlen(save) - ft_strchr(save) + 1));
-	if (!temp)
-		return (0);
-	ft_strcpy(&save[ft_strchr(save)], temp);
-	free(save);
-	save = malloc(sizeof(char) * (ft_strlen(temp) + 1));
-	if (!save)
-		return (0);
-	ft_strcpy(temp, save);
-	free(temp);
-	return (save);
+	
 }
 
-char	*ft_return_line(char **save)
+char	*ft_check_buffer(char *buffer)
 {
-	char	*ret;
-	int		i;
-
-	i = 0;
-	ret = malloc(sizeof(char) * (ft_strchr(*save) + 1));
-	if (!ret)
-		return (0);
-	while (i < ft_strchr(*save))
-	{
-		ret[i] = save[0][i];
-		i++;
-	}
-	ret[i] = 0;
-	*save = ft_save_update(*save);
-	return (ret);
+	
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*save = NULL;
-	char		buffer[BUFFER_SIZE + 1];
-	int			r;
+	static char	buffer[BUFFER_SIZE + 1] = NULL;
+	char		*line;
+	int			reader;
 
-	r = 1;
-	while (r > 0 && ft_strchr(save) < 1)
+	reader = 1;
+	line = malloc(sizeof(char) * 1);
+	if (!line)
+		return (0);
+	*line = 0;
+	if (*buffer)
+	
+	while (reader > 0 && ft_strchr(line) == 0)
 	{
-		r = read(fd, buffer, BUFFER_SIZE);
-		buffer[r] = 0;
-		save = ft_strjoin(save, buffer);
+		reader = read(fd, buffer, BUFFER_SIZE);
+		buffer[reader] = 0;
+		line = ft_strjoin(line, buffer);
 	}
-	if (ft_strchr(save) > 0)
+	if ((ft_strchr(line) > 0 || reader == 0) && ft_strlen(line) > 0)
 	{
-		return (ft_return_line(&save));
+		ft_buffer_update(buffer);
+		return (line);
 	}
+	free(buffer);
+	free(line);
 	return (0);
 }
