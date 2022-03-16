@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vrigaudy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 17:42:02 by vrigaudy          #+#    #+#             */
-/*   Updated: 2022/01/04 21:52:25 by vrigaudy         ###   ########.fr       */
+/*   Created: 2022/01/04 21:46:39 by vrigaudy          #+#    #+#             */
+/*   Updated: 2022/01/04 22:00:43 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {

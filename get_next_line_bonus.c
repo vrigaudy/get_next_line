@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrigaudy <vrigaudy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vrigaudy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 17:42:22 by vrigaudy          #+#    #+#             */
-/*   Updated: 2022/01/07 11:41:28 by vrigaudy         ###   ########.fr       */
+/*   Created: 2022/01/04 21:43:51 by vrigaudy          #+#    #+#             */
+/*   Updated: 2022/01/07 11:41:25 by vrigaudy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	ft_buffer_update(char *buffer)
 {
@@ -29,7 +29,7 @@ void	ft_buffer_update(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[1024][BUFFER_SIZE + 1];
 	char		*line;
 	int			reader;
 
@@ -37,15 +37,15 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd < 0 || fd > 1023 || BUFFER_SIZE < 1)
 		return (NULL);
-	line = ft_strjoin(line, buffer);
+	line = ft_strjoin(line, buffer[fd]);
 	while (reader > 0 && ft_strchr(line) == 0)
 	{
-		reader = read(fd, buffer, BUFFER_SIZE);
+		reader = read(fd, buffer[fd], BUFFER_SIZE);
 		if (reader < 0)
 			return (free(line), NULL);
-		buffer[reader] = 0;
-		line = ft_strjoin(line, buffer);
+		buffer[fd][reader] = 0;
+		line = ft_strjoin(line, buffer[fd]);
 	}
-	ft_buffer_update(buffer);
+	ft_buffer_update(buffer[fd]);
 	return (line);
 }
